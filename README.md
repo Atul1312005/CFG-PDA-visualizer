@@ -23,7 +23,7 @@ An interactive web-based tool to convert between **Context-Free Grammars (CFG)**
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/cfg-pda-visualizer.git
+   git clone https://atul1312005.github.io/CFG-PDA-visualizer/
    ```
 
 2. Open:
@@ -61,7 +61,8 @@ S → aSb | ε
 
 ## Live Demo
 
-(Add GitHub Pages link here after deployment)
+https://atul1312005.github.io/CFG-PDA-visualizer/
+
 
 ---
 
