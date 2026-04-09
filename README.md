@@ -63,6 +63,10 @@ S → aSb | ε
 
 https://atul1312005.github.io/CFG-PDA-visualizer/
 
+<img width="1919" height="916" alt="image" src="https://github.com/user-attachments/assets/36091a76-ccd0-4bc6-9b28-84b20774b58d" />
+<img width="1919" height="912" alt="image" src="https://github.com/user-attachments/assets/11f484ff-7336-40f8-abdb-20cd4c0dc353" />
+<img width="1919" height="905" alt="image" src="https://github.com/user-attachments/assets/233620f3-3505-4e4f-863f-56c0853404a0" />
+
 
 ---
 
