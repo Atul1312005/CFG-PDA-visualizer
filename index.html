@@ -297,11 +297,12 @@ input[type=text]:focus{border-color:var(--accent);}
     <span class="logo-cfg">CFG</span>
     <span class="logo-sep">&#8652;</span>
     <span class="logo-pda">PDA</span>
-    <span class="logo-sub">Formal Language Converter</span>
+    <span class="logo-sub">Visualizer</span>
   </div>
   <div class="mode-switch">
     <button class="mode-btn active" id="btn-cfg" onclick="setMode('cfg')">CFG &#8594; PDA</button>
     <button class="mode-btn" id="btn-pda" onclick="setMode('pda')">PDA &#8594; CFG</button>
+    <button class="mode-btn" id="btn-instruction" onclick="setMode('instruction')">Instruction</button>
     <button class="mode-btn" id="btn-theory" onclick="setMode('theory')">Theory</button>
   </div>
   <div class="hdr-r">AUTOMATA THEORY</div>
@@ -321,6 +322,7 @@ input[type=text]:focus{border-color:var(--accent);}
             <button class="ex-pill" onclick="loadCFG('wwr')">Palindrome</button>
             <button class="ex-pill" onclick="loadCFG('equal')">#a = #b</button>
             <button class="ex-pill" onclick="loadCFG('dyck')">Dyck (aⁿbⁿ pairs)</button>
+            <button class="ex-pill" onclick="loadCFG('endsab')">Σ*ab</button>
           </div>
           <div style="margin-top:.9rem">
             <label class="fl">Productions</label>
@@ -417,13 +419,52 @@ input[type=text]:focus{border-color:var(--accent);}
     </div>
   </div>
 </div>
+<!-- ═══ INSTRUCTION ═══ -->
+<div id="sec-instruction" style="display:none">
+  <div class="theory-wrap">
+    <div class="theory-hero">
+      <h1>Instruction</h1>
+      <p>Use this page to convert grammars and automata, explore conversion theory, and inspect every step of the algorithm.</p>
+    </div>
+    <div class="theory-section">
+      <div class="theory-section-title">CFG → PDA</div>
+      <div class="theory-card">
+        <ul>
+          <li>Enter grammar rules in the left panel using <code>S -> aSb | eps</code> format.</li>
+          <li>Click <strong>Convert</strong> to generate the equivalent PDA.</li>
+          <li>View the transition table, GNF intermediate form, and stack simulation.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="theory-section">
+      <div class="theory-section-title">PDA → CFG</div>
+      <div class="theory-card">
+        <ul>
+          <li>Define states, input alphabet, stack alphabet, initial state, initial stack symbol, and accept states.</li>
+          <li>Add transitions one row at a time, using <code>eps</code> for epsilon.</li>
+          <li>Click <strong>Convert</strong> to see the generated CFG and conversion steps.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="theory-section">
+      <div class="theory-section-title">Interacting with the page</div>
+      <div class="theory-card">
+        <ul>
+          <li>Use example pills to load sample grammars and automata quickly.</li>
+          <li>Run the stack simulator and step through the automaton’s behaviour.</li>
+          <li>Drag nodes in the diagram to rearrange the graph, and inspect the transition visualisation.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
 <!-- ═══ THEORY ═══ -->
 <div id="sec-theory" style="display:none">
-<div class="theory-wrap">
-  <div class="theory-hero">
-    <h1>Formal Language Theory:<br><em>CFG &amp; PDA</em></h1>
-    <p>A concise reference covering definitions, the equivalence theorem, and both conversion algorithms — everything you need to understand what this tool computes and why it works.</p>
-  </div>
+  <div class="theory-wrap">
+    <div class="theory-hero">
+      <h1>Formal Language Theory:<br><em>CFG &amp; PDA</em></h1>
+      <p>A concise reference covering definitions, the equivalence theorem, and both conversion algorithms — everything you need to understand what this tool computes and why it works.</p>
+    </div>
 
   <!-- CFG -->
   <div class="theory-section">
@@ -664,9 +705,11 @@ input[type=text]:focus{border-color:var(--accent);}
 function setMode(m){
   document.getElementById('btn-cfg').classList.toggle('active',m==='cfg');
   document.getElementById('btn-pda').classList.toggle('active',m==='pda');
+  document.getElementById('btn-instruction').classList.toggle('active',m==='instruction');
   document.getElementById('btn-theory').classList.toggle('active',m==='theory');
   document.getElementById('sec-cfg').style.display=m==='cfg'?'block':'none';
   document.getElementById('sec-pda').style.display=m==='pda'?'block':'none';
+  document.getElementById('sec-instruction').style.display=m==='instruction'?'block':'none';
   document.getElementById('sec-theory').style.display=m==='theory'?'block':'none';
 }
 
@@ -755,7 +798,8 @@ var CFG_EX={
   anbn:'S -> aSb | eps',
   wwr:'S -> aSa | bSb | a | b | eps',
   equal:'S -> aB | bA | eps\nA -> a | aS | bAA\nB -> b | bS | aBB',
-  dyck:'S -> aSbS | eps'
+  dyck:'S -> aSbS | eps',
+  endsab:'S -> X a b\nX -> a X | b X | eps'
 };
 function loadCFG(k){document.getElementById('cfg-input').value=CFG_EX[k];}
 
